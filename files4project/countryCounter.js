@@ -80,8 +80,8 @@ function startCounter(){
 				
 				for(var country in channels_BY_country){
 					channels_BY_country[country].sort( (a,b) => (
-						a["Channel title"] > b["Channel title"]) ? 1 : (
-							(b["Channel title"] > a["Channel title"]) ? -1 : 0
+						a["Channel Title"] > b["Channel Title"]) ? 1 : (
+							(b["Channel Title"] > a["Channel Title"]) ? -1 : 0
 						)
 					);
 				}
@@ -112,4 +112,5 @@ function downloadTextFile(text, filename) {
   
   link.click();
   URL.revokeObjectURL(url);
+
 }
