@@ -22,11 +22,11 @@ function map_data_check(){
 	/*
 	label: [country - take from counts (skip antartica)]
 	dropdown values
-	//all channels[x]."Channel title"
+	//all channels[x]."Channel Title"
 	where channels[x].Country matches counts
 	(can save running time by continue if value count == aimed/real count)
 	
-	// that as text - Channel ID as value to ensure right when calling
+	// that as text - Channel Id as value to ensure right when calling
 	*/
 	if(!dropDownsCreated){
 		createDropdowns()
@@ -124,7 +124,7 @@ function createDropdowns(){
 			}
 			else{
 				// mult based on last char
-				var c = (channel['Subscriber count']).slice(-1)
+				var c = (channel['Subscriber Count']).slice(-1)
 				
 				if( !(c >= '0' && c <= '9') ){
 					switch(c){
@@ -141,16 +141,16 @@ function createDropdowns(){
 			// now need to determine most subbed and add selected to that <option>
 			if(channel["subcountASnum"] > top_subbed_of_country.number){
 				top_subbed_of_country.number = channel["subcountASnum"]
-				top_subbed_of_country.id     = channel["Channel ID"]
+				top_subbed_of_country.id     = channel["Channel Id"]
 			}
 			
 			select_to_add += ('<option' + 
-				' value="' 				+ channel['Channel ID'] +
-				'" id="' 				+ channel['Channel ID'] +
-				'" data-sub_count=' 	+ channel['Subscriber count'] + 
-				' data-channel_icon=' 	+ channel["Channel icon"] + 
-				' data-channel_name="' 	+ channel['Channel title'].replaceAll('"',"'") + '">')
-			select_to_add += channel['Channel title'] + "</option>"
+				' value="' 				+ channel['Channel Id'] +
+				'" id="' 				+ channel['Channel Id'] +
+				'" data-sub_count=' 	+ channel['Subscriber Count'] + 
+				' data-channel_icon=' 	+ channel["Channel Icon"] + 
+				' data-channel_name="' 	+ channel['Channel Title'].replaceAll('"',"'") + '">')
+			select_to_add += channel['Channel Title'] + "</option>"
 			
 			// can use value to generate channel url
 		}
@@ -278,4 +278,5 @@ load_saved_faves = load_fave_channels_btn.addEventListener('click', ()=> {
 		
 		// get new default selected
 	});
+
 });
