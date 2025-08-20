@@ -117,7 +117,7 @@ function createDropdowns(){
 		
 		// need to grab all channels of each country for this part
 		for(var channel of channels_BY_country[country]){
-			channel["subcountASnum"] = parseFloat(channel['Subscriber count']);
+			channel["subcountASnum"] = parseFloat(channel['Subscriber Count']);
 			// parse num 
 			if(channel["subcountASnum"] == NaN){
 				channel["subcountASnum"] = 0;
@@ -280,3 +280,4 @@ load_saved_faves = load_fave_channels_btn.addEventListener('click', ()=> {
 	});
 
 });
+
