@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>csv to maps</title>
+    <link rel="stylesheet" href="files4project/styling/style.css">
+	
+	<script src="files4project/papaparse.min.js"></script>
+	
+	<!-- generated with https://www.favicon-generator.org/ -->
+	<link rel="apple-touch-icon" sizes="57x57" href="files4project/images/apple-icon-57x57.png">		<link rel="apple-touch-icon" sizes="60x60" href="files4project/images/apple-icon-60x60.png">		<link rel="apple-touch-icon" sizes="72x72" href="files4project/images/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="files4project/images/apple-icon-76x76.png">		<link rel="apple-touch-icon" sizes="114x114" href="files4project/images/apple-icon-114x114.png">	<link rel="apple-touch-icon" sizes="120x120" href="files4project/images/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="files4project/images/apple-icon-144x144.png">	<link rel="apple-touch-icon" sizes="152x152" href="files4project/images/apple-icon-152x152.png">	<link rel="apple-touch-icon" sizes="180x180" href="files4project/images/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="files4project/images/android-icon-192x192.png">	<link rel="icon" type="image/png" sizes="32x32" href="files4project/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="files4project/images/favicon-96x96.png">				<link rel="icon" type="image/png" sizes="16x16" href="files4project/images/favicon-16x16.png">
+	<link rel="manifest" href="files4project/images/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">		<meta name="msapplication-TileImage" content="files4project/images/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+  </head>
+  
+  <body>
+	<a href="index.html">Go To yapms/mapchart page</a>
+	<hr>
+  
+  
+	<label for="csvFileInput">Select SubList file (with countries):</label> <br>
+	<input type="file" id="csvFileInput" name="csvFileInput" accept=".csv">
+	
+	
+	
+	<button id="useInputCSV_YAPMS"    hidden="true">Download</button>
+	<button id="useInputCSV_MapChart" hidden="true">Download</button>
+	<div id="file_validity"></div>
+	
+	
+	
+	<button id="activate_map">fill map with channels</button>
+	
+	<div id="mapAndList">
+		<div id="map" style="max-width: 1000px"></div>
+		
+		<div id="listAndControls">
+			<form id="map_list" style="overflow:scroll">
+				<!--
+				generates
+				
+				same output as
+				simple_numList
+				filtered to COUNTRIES only
+				and then those in the Map
+				(may add later though) - diiferentiate with colour anyway
+				
+				and also select element filled with 
+				all channel names of the country as options
+				(with data-sub-count as a attribute,
+				default being the highest in each <select>)
+				
+				#########################################
+				## at this stage
+				
+				then make selected value into hover pop-up for each COUNTRIES
+				template already designed
+				
+				onchange on select that changes the map
+				
+				turn blue on map while select open for countries?
+				
+				####
+				THEN LOTS OF CSS WORK
+				-->
+			</form>
+			
+			<label for="channelsFileInput">Select channels file:</label> <br>
+			<input type="file" id="channelsFileInput" name="channelsFileInput" accept=".csv">
+			<button id="save_fave_channels">Save selected channels as .csv</button>
+			<button id="load_fave_channels">Load selected channels from inputted .csv</button>
+		</div>
+	</div>
+	
+	
+	<div hidden="true">
+		<div id="yapms" class="convert_to_map">
+			<h3><a id="linkA" class="link_heading" href="https://yapms.com" target="_blank">YAPMS</a>(Yet Another Political Map&nbsp;Simulator)<br>World - United Nations Map</h3>
+			<button id="useInputCSV_YAPMS">Download</button> <br>
+			<a href="https://yapms.com/app/glb/countries/2020078/blank" target="_blank">Link to Map Template</a>
+			
+			<img id="un_logo" class="logo_right" alt="United Nations logo" src="files4project/styling/UnitedNations.png">
+			<img id="yapms_logo" class="logo_left" alt="YAPMS logo" src="files4project/styling/yapms.png">
+		</div>
+		
+		
+		<div id="mapchart" class="convert_to_map">
+			<h3><a id="linkB" class="link_heading" href="https://www.mapchart.net/" target="_blank">Map Chart</a>
+			Compatible with all modern International&nbsp;Maps</h3>
+			
+			<!-- add continent selectors -->
+			
+			<table id="mapmaker" class="center">
+				<thead>
+					<tr><th>Colour</th><th colspan=2>Range (inclusive)</th> <th></th></tr>
+				</thead>
+				<tr> 
+					<td><input type="color" class="mcColour"></td> 
+					<td><input id="setTo1" type="number" value="1" min="1" max="1"></td>
+					<td id="A1stRange2"></td> 
+					<td class="rowRemove"></td> 
+					<!-- <button>X</button> -->
+				</tr>
+			</table>
+			<button id="addRowMC">ADD ROW</button>
+			<button id="addDefaultRows">Use Defaults</button><br>
+			
+			<label for="MapChart_allowEmpty">Include empty headings?</label>
+			<input id="MapChart_allowEmpty" type="checkbox" checked>
+			<button id="useInputCSV_MapChart">Download</button>
+			<br>
+			<a href="https://www.mapchart.net/world-advanced.html" target="_blank">Link to full world map</a>
+			<img id="mapchart_logo" class="logo_left" alt="Map Chart logo" src="files4project/styling/MapChart.png">
+		</div>
+	</div>
+	
+	<script src="files4project/countryCounter.js"></script>
+	
+	<script src="files4project/yapms_files/convertToYapms.js"></script>
+	<script src="files4project/map_chart_files/convertToMapChart.js"></script>
+	
+	<script type="text/javascript" src="files4project/map/mapdata.js"></script>		
+	<script type="text/javascript" src="files4project/map/mapdata_update.js"></script>
+	<script type="text/javascript" src="files4project/map/worldmap.js"></script>
+  </body>
+  
+</html>

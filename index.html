@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>csv to maps</title>
+    <link rel="stylesheet" href="files4project/styling/style.css">
+	
+	<script src="files4project/papaparse.min.js"></script>
+	
+	<!-- generated with https://www.favicon-generator.org/ -->
+	<link rel="apple-touch-icon" sizes="57x57" href="files4project/images/apple-icon-57x57.png">		<link rel="apple-touch-icon" sizes="60x60" href="files4project/images/apple-icon-60x60.png">		<link rel="apple-touch-icon" sizes="72x72" href="files4project/images/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="files4project/images/apple-icon-76x76.png">		<link rel="apple-touch-icon" sizes="114x114" href="files4project/images/apple-icon-114x114.png">	<link rel="apple-touch-icon" sizes="120x120" href="files4project/images/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="files4project/images/apple-icon-144x144.png">	<link rel="apple-touch-icon" sizes="152x152" href="files4project/images/apple-icon-152x152.png">	<link rel="apple-touch-icon" sizes="180x180" href="files4project/images/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="files4project/images/android-icon-192x192.png">	<link rel="icon" type="image/png" sizes="32x32" href="files4project/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="files4project/images/favicon-96x96.png">				<link rel="icon" type="image/png" sizes="16x16" href="files4project/images/favicon-16x16.png">
+	<link rel="manifest" href="files4project/images/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">		<meta name="msapplication-TileImage" content="files4project/images/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+
+	  <header>
+	<h1>YouTube sub list to Map</h1>
+	<h5>use <a href="https://github.com/IronEyedDrgn/YT-sub-map">https://github.com/IronEyedDrgn/YT-sub-map</a> to convert your google takeouts file for use here
+	<br> or go <a href="https://github.com/IronEyedDrgn/YT-sub-map/blob/main/YT_sublist_scraper.py">HERE</a> and click "download raw file" directly <img id="github_download_button" src="files4project/images/github_download_button.png" alt="github download button"></h5>
+	<a href="myHTMLpage_My_YT_Map.html">Go To page with my own map</a> <hr>
+	</header>
+  
+	<label for="csvFileInput">Select SubList file (with countries):</label> <br>
+	<input type="file" id="csvFileInput" name="csvFileInput" accept=".csv">
+	
+	<div id="file_validity"></div>
+	
+	
+	
+	<div>
+		<div id="yapms" class="convert_to_map">
+			<h3><a id="linkA" class="link_heading" href="https://yapms.com" target="_blank">YAPMS</a>(Yet Another Political Map&nbsp;Simulator)<br>World - United Nations Map</h3>
+			<button id="useInputCSV_YAPMS">Download</button> <br>
+			<a href="https://yapms.com/app/glb/countries/2020078/blank" target="_blank">Link to Map Template</a>
+
+			<footer class="section_footer">to use downloaded map - click above link - select share - load local file and pick the file you downloaded here</footer>
+			
+			<img id="un_logo" class="logo_right" alt="United Nations logo" src="files4project/styling/UnitedNations.png">
+			<img id="yapms_logo" class="logo_left" alt="YAPMS logo" src="files4project/styling/yapms.png">
+		</div>
+		
+		
+		<div id="mapchart" class="convert_to_map">
+			<h3><a id="linkB" class="link_heading" href="https://www.mapchart.net/" target="_blank">Map Chart</a>
+			Compatible with all modern International&nbsp;Maps</h3>
+			
+			<!-- add continent selectors -->
+			
+			<table id="mapmaker" class="center">
+				<thead>
+					<tr><th>Colour</th><th colspan=2>Range (inclusive)</th> <th></th></tr>
+				</thead>
+				<tr> 
+					<td><input type="color" class="mcColour"></td> 
+					<td><input id="setTo1" type="number" value="1" min="1" max="1"></td>
+					<td id="A1stRange2"></td> 
+					<td class="rowRemove"></td> 
+					<!-- <button>X</button> -->
+				</tr>
+			</table>
+			<button id="addRowMC">ADD ROW</button>
+			<button id="addDefaultRows">Use Defaults</button><br>
+			
+			<label for="MapChart_allowEmpty">Include empty headings?</label>
+			<input id="MapChart_allowEmpty" type="checkbox" checked>
+			<button id="useInputCSV_MapChart">Download</button>
+			<br>
+			<a href="https://www.mapchart.net/world-advanced.html" target="_blank">Link to full world map</a>
+
+			<br>
+			<footer class="section_footer">to use downloaded map - pick any map on the map chart - select "Save / Load Configuration" - choose file - load configuration</footer>
+			<img id="mapchart_logo" class="logo_left" alt="Map Chart logo" src="files4project/styling/MapChart.png">
+		</div>
+	</div>
+	
+	<div id="hover" style="overflow:scroll" class="convert_to_map"> 
+		click and pop-up of either <br>
+		<button id="s_nL_btn">simple number list : country:num</button>
+		<br>
+		<button id="u_nL_btn">unique count list: num: number countries</button>
+		
+		<div id="numlist">
+			<div id="simple_numList"></div>
+			
+			<div id="unique_numList"></div>
+		</div>
+		
+		<!-- sort out hovermenu.js and make this box lox nice -->
+	</div>
+
+	  <footer id="page_footer">not affiliatied with yapms or mapchart</footer>
+	
+	<script src="files4project/countryCounter.js"></script>
+	
+	<script src="files4project/yapms_files/convertToYapms.js"></script>
+	<script src="files4project/map_chart_files/convertToMapChart.js"></script>
+	<script src="files4project/hover_menu/hover_menu.js"></script>
+  </body>
+  
+</html>
+
